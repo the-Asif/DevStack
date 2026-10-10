@@ -20,7 +20,6 @@ export default function App() {
   const [stack, setStack] = useState<Technology[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const [authModal, setAuthModal] = useState<'signin' | 'signup' | null>(null);
 
   // Load JSON Data via useEffect with loading state
   useEffect(() => {
@@ -53,7 +52,7 @@ export default function App() {
     if (isAlreadyAdded) {
       toast.warning(`${tech.name} is already in your stack!`, {
         position: 'top-right',
-        autoClose: 3000,
+        autoClose: 2500,
       });
       return;
     }
@@ -61,7 +60,7 @@ export default function App() {
     setStack((prev) => [...prev, tech]);
     toast.success(`${tech.name} added to your stack!`, {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 2500,
     });
   };
 
@@ -70,7 +69,7 @@ export default function App() {
     setStack((prev) => prev.filter((item) => item.id !== tech.id));
     toast.info(`${tech.name} removed from your stack.`, {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 2500,
     });
   };
 
@@ -80,7 +79,7 @@ export default function App() {
     setStack([]);
     toast.error('All technologies removed from your stack.', {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 2500,
     });
   };
 
@@ -89,7 +88,7 @@ export default function App() {
     return stack.some((item) => item.id === techId);
   };
 
-  // Badge styling helper based on badge name
+  // Badge styling helper matching Penpot design
   const getBadgeStyle = (badge: string) => {
     switch (badge.toLowerCase()) {
       case 'popular':
@@ -109,6 +108,8 @@ export default function App() {
         return 'bg-yellow-50 text-yellow-700 border-yellow-200';
       case 'modern':
         return 'bg-teal-50 text-teal-600 border-teal-100';
+      case 'ssr / edge':
+        return 'bg-purple-50 text-purple-600 border-purple-100';
       default:
         return 'bg-purple-50 text-purple-600 border-purple-100';
     }
@@ -130,9 +131,9 @@ export default function App() {
       />
 
       {/* =========================================================================
-          NAVBAR (Sticky)
+          1. NAVBAR (Sticky)
           ========================================================================= */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-200">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs transition-all duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-18 py-3">
             {/* Mobile Left: Hamburger Icon */}
@@ -195,18 +196,30 @@ export default function App() {
               </a>
               <a
                 href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.info('Projects feature coming soon!');
+                }}
                 className="text-slate-600 hover:text-pink-600 transition-colors duration-150"
               >
                 Projects
               </a>
               <a
                 href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.info('Dev Stack - Discover & compare software stacks.');
+                }}
                 className="text-slate-600 hover:text-pink-600 transition-colors duration-150"
               >
                 About
               </a>
               <a
                 href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.info('Contact: support@devstack.com');
+                }}
                 className="text-slate-600 hover:text-pink-600 transition-colors duration-150"
               >
                 Contact
@@ -217,14 +230,14 @@ export default function App() {
             <div className="flex items-center space-x-3 sm:space-x-4">
               <button
                 type="button"
-                onClick={() => setAuthModal('signin')}
+                onClick={() => toast.info('Sign In clicked')}
                 className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors px-2 py-1.5 cursor-pointer"
               >
                 Sign In
               </button>
               <button
                 type="button"
-                onClick={() => setAuthModal('signup')}
+                onClick={() => toast.success('Sign Up clicked')}
                 className="brand-gradient-btn text-sm font-semibold px-5 py-2 rounded-full cursor-pointer"
               >
                 Sign Up
@@ -252,21 +265,33 @@ export default function App() {
             </a>
             <a
               href="#projects"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                toast.info('Projects feature coming soon!');
+              }}
               className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100"
             >
               Projects
             </a>
             <a
               href="#about"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                toast.info('Dev Stack - Discover & compare software stacks.');
+              }}
               className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100"
             >
               About
             </a>
             <a
               href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                toast.info('Contact: support@devstack.com');
+              }}
               className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100"
             >
               Contact
@@ -276,7 +301,7 @@ export default function App() {
       </header>
 
       {/* =========================================================================
-          BANNER / HERO SECTION
+          2. BANNER / HERO SECTION
           ========================================================================= */}
       <section id="home" className="pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -300,7 +325,7 @@ export default function App() {
                   Explore Technologies
                 </a>
                 <a
-                  href="#about"
+                  href="#technologies"
                   className="px-6 py-3 rounded-lg text-sm sm:text-base font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors inline-flex items-center cursor-pointer"
                 >
                   Learn More
@@ -323,7 +348,7 @@ export default function App() {
       </section>
 
       {/* =========================================================================
-          TECHNOLOGIES & YOUR STACK SECTION
+          3. TECHNOLOGIES & YOUR STACK SECTION
           ========================================================================= */}
       <section id="technologies" className="py-12 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -518,163 +543,7 @@ export default function App() {
       </section>
 
       {/* =========================================================================
-          PROJECTS SECTION (Supplementary content for navigation)
-          ========================================================================= */}
-      <section id="projects" className="py-16 bg-[#fafbfc] border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-              Featured Stack <span className="brand-gradient-text">Architectures</span>
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2">
-              Discover industry-proven architecture patterns built by engineering teams.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-pink-50 text-pink-600 border border-pink-100">
-                Full-Stack SaaS
-              </span>
-              <h3 className="text-lg font-bold text-slate-900 mt-4 mb-2">
-                Modern Cloud Application
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mb-4">
-                React, Next.js, PostgreSQL, and Tailwind CSS configured for high
-                scalability and automated deployments.
-              </p>
-              <div className="flex gap-2 text-xs font-medium text-slate-600">
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Next.js</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">PostgreSQL</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Docker</span>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-600 border border-purple-100">
-                High Performance
-              </span>
-              <h3 className="text-lg font-bold text-slate-900 mt-4 mb-2">
-                Real-Time Streaming Engine
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mb-4">
-                Node.js and Redis memory caching backing interactive web apps
-                with microsecond latency responses.
-              </p>
-              <div className="flex gap-2 text-xs font-medium text-slate-600">
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Node.js</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Redis</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">TypeScript</span>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
-                Lean & Agile
-              </span>
-              <h3 className="text-lg font-bold text-slate-900 mt-4 mb-2">
-                Lightweight Reactive Dashboard
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mb-4">
-                Svelte and Tailwind CSS combining effortless developer experience
-                with zero-bundle overhead reactivity.
-              </p>
-              <div className="flex gap-2 text-xs font-medium text-slate-600">
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Svelte</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">Tailwind</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded">PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          ABOUT & CONTACT SECTION
-          ========================================================================= */}
-      <section id="about" className="py-16 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-pink-600">
-                About Dev Stack
-              </span>
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                Designed for Developers, Engineered for Efficiency
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Dev Stack simplifies modern web toolchain selection. Instead of
-                navigating hundreds of disparate documentations, developers can
-                explore curated frameworks, inspect real ratings and difficulty curves,
-                and compose production-ready technology combinations effortlessly.
-              </p>
-              <div className="pt-2 flex items-center gap-6">
-                <div>
-                  <p className="text-2xl font-extrabold text-slate-900">100%</p>
-                  <p className="text-xs text-slate-500">Open Source</p>
-                </div>
-                <div className="w-px h-8 bg-slate-200"></div>
-                <div>
-                  <p className="text-2xl font-extrabold text-slate-900">12+</p>
-                  <p className="text-xs text-slate-500">Core Technologies</p>
-                </div>
-                <div className="w-px h-8 bg-slate-200"></div>
-                <div>
-                  <p className="text-2xl font-extrabold text-slate-900">Lightning</p>
-                  <p className="text-xs text-slate-500">Stack Customization</p>
-                </div>
-              </div>
-            </div>
-
-            <div id="contact" className="bg-[#fafbfc] rounded-2xl p-8 border border-slate-200/80">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Get in Touch</h3>
-              <p className="text-xs sm:text-sm text-slate-500 mb-6">
-                Have questions or want to suggest a new technology for Dev Stack?
-              </p>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.success('Thank you! Your message has been received.');
-                  (e.target as HTMLFormElement).reset();
-                }}
-                className="space-y-4"
-              >
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="developer@domain.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Message
-                  </label>
-                  <textarea
-                    rows={3}
-                    required
-                    placeholder="Share your thoughts or recommendations..."
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="brand-gradient-btn w-full py-2.5 rounded-xl font-semibold text-sm cursor-pointer"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          FOOTER
+          4. FOOTER
           ========================================================================= */}
       <footer className="bg-white border-t border-slate-200 pt-16 pb-12 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -743,6 +612,10 @@ export default function App() {
                 <li>
                   <a
                     href="#projects"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toast.info('Projects feature coming soon!');
+                    }}
                     className="hover:text-pink-600 transition-colors"
                   >
                     Projects
@@ -758,13 +631,24 @@ export default function App() {
               </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600">
                 <li>
-                  <a href="#about" className="hover:text-pink-600 transition-colors">
+                  <a
+                    href="#about"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toast.info('Dev Stack - Discover & compare software stacks.');
+                    }}
+                    className="hover:text-pink-600 transition-colors"
+                  >
                     About
                   </a>
                 </li>
                 <li>
                   <a
                     href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toast.info('Contact: support@devstack.com');
+                    }}
                     className="hover:text-pink-600 transition-colors"
                   >
                     Contact
@@ -847,86 +731,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* =========================================================================
-          AUTHENTICATION MODAL (Sign In / Sign Up)
-          ========================================================================= */}
-      {authModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-150 animate-scaleUp">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-slate-900">
-                {authModal === 'signin' ? 'Sign In to Dev Stack' : 'Create an Account'}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setAuthModal(null)}
-                className="text-slate-400 hover:text-slate-700 p-1 cursor-pointer"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <p className="text-xs text-slate-500 mb-5">
-              {authModal === 'signin'
-                ? 'Welcome back! Enter your details to access your saved stacks.'
-                : 'Join Dev Stack to curate, save, and share your technology architectures.'}
-            </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                toast.success(
-                  authModal === 'signin'
-                    ? 'Successfully signed in!'
-                    : 'Account created successfully!'
-                );
-                setAuthModal(null);
-              }}
-              className="space-y-3.5"
-            >
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="name@example.com"
-                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-              </div>
-              <button
-                type="submit"
-                className="brand-gradient-btn w-full py-2.5 rounded-xl font-semibold text-sm mt-2 cursor-pointer"
-              >
-                {authModal === 'signin' ? 'Sign In' : 'Sign Up'}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
