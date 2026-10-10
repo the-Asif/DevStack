@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/src/assets/logo-text.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dev Stack - Explore frontend, backend, database, and tooling options to build your ideal development stack." />
+    <title>Dev Stack - Build Your Ideal Development Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                orange: '#ff6b35',
+                pink: '#ec4899',
+                violet: '#8b5cf6',
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#fafbff] text-slate-800 antialiased selection:bg-pink-100 selection:text-pink-600">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
