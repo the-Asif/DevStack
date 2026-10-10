@@ -118,12 +118,12 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[#fafbfc] text-slate-800 font-sans">
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2500}
         hideProgressBar={false}
         newestOnTop
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnFocusLoss={false}
         draggable
         pauseOnHover
         theme="light"
