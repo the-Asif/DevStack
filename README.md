@@ -58,7 +58,6 @@ The `useState` hook allows functional components to store, maintain, and update 
 - `stack`: Storing the user's selected technology items in the sidebar.
 - `isLoading`: Managing the loading spinner state during data fetch.
 - `isMobileMenuOpen`: Toggling the responsive mobile navbar drawer.
-- `authModal`: Handling the active state for the Sign In / Sign Up modal.
 
 ### 4. What does the useEffect hook do, and why did you need it to load the JSON data?
 **Answer:**
