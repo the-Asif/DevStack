@@ -24,7 +24,7 @@ export default function App() {
   // Load JSON Data via useEffect with loading state
   useEffect(() => {
     setIsLoading(true);
-    fetch('/technologies.json')
+    fetch('./technologies.json')
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch technology data');
