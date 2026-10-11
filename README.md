@@ -81,11 +81,11 @@ When `stack.length === 0`, it shows the dashed "Your stack is empty." box. Once 
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/a5-dev-stack.git
+   git clone https://github.com/the-Asif/DevStack.git
    ```
 2. Open the project folder:
    ```bash
-   cd a5-dev-stack
+   cd DevStack
    ```
 3. Install dependencies:
    ```bash
