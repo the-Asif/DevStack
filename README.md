@@ -75,6 +75,10 @@ When `stack.length === 0`, it shows the dashed "Your stack is empty." box. Once 
 - **Parent to Child:** The parent passes data downward using props, just like HTML attributes (for example: `<TechCard tech={item} />`).
 - **Child to Parent:** The parent passes a callback function down to the child as a prop (for example: `<TechCard onAdd={handleAddToStack} />`). When an event happens in the child (like a button click), the child calls that function and passes the necessary data back as an argument to the parent.
 
+## Live Demo
+
+- **Live Website:** [https://the-asif.github.io/DevStack/](https://the-asif.github.io/DevStack/)
+
 ---
 
 ## How to Run the Project Locally
